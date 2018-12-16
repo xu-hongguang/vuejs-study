@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let和const</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+<button class="btn btn-info">按钮0</button>
+<button class="btn btn-info">按钮1</button>
+<button class="btn btn-info">按钮2</button>
+<button class="btn btn-info">按钮3</button>
+<button class="btn btn-info">按钮4</button>
+
+<script>
+    /* {
+         var str0 = 'da';
+         let str = "徐";
+         console.log(str)
+     }
+
+     console.log(str0);*/
+
+    // ES6之前
+    /*window.onload=function () {
+        var btns = document.getElementsByTagName("button");
+        for (var i = 0; btns.length; i++) {
+            (function (i) {
+                btns[i].onclick = function () {
+                    alert("点击了第" + i + "个按钮")
+                }
+            })(i);
+        }
+    };*/
+
+    //ES6(let作用域规范化，const声明常量)
+    /*let btns = document.getElementsByTagName("button");
+    for (let i = 0; btns.length; i++){
+        btns[i].onclick = function () {
+            alert("点击了第" + i + "个按钮")
+        }
+    }*/
+
+    {
+        const name = "徐宏光";
+        console.log(name);
+    }
+
+    {
+        let [a,b,c] = "中国人";
+        console.log(a); //'中'
+        console.log(b); //'国'
+        console.log(c)  //'人'
+    }
+</script>
+</body>
+</html>

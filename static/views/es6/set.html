@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+<button class="btn btn-info">按钮0</button>
+<button class="btn btn-info">按钮1</button>
+<button class="btn btn-info">按钮2</button>
+<button class="btn btn-info">按钮3</button>
+<button class="btn btn-info">按钮4</button>
+
+<script>
+    let set = new Set(["sd", "asd", "sd", "张三"]);
+    set.add("徐宏光");
+    set.add("徐宏光");
+    console.log(set.delete("asd"));
+    console.log(set.size);
+    console.log(set);
+</script>
+</body>
+</html>
