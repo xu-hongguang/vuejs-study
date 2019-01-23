@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js组件</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+
+        #app {
+            width: 600px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div v-cloak id="app" class="container">
+    <my-btn></my-btn>
+    <my-btn></my-btn>
+    <my-btn></my-btn>
+</div>
+<template id="my_btn">
+    <button @click="count++">{{count}}</button>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+    let data = {
+        count: 0
+    };
+
+    Vue.component("my-btn", {
+        template: '#my_btn',
+        data: function () {
+            return {
+                count: 0
+            };
+            // return data
+        }
+    });
+
+    new Vue({
+        el: '#app',
+    });
+</script>
+</body>
+</html>

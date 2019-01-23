@@ -1,18 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>set</title>
+    <title>vue.js指令学习</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/vue.js"></script>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+        table{
+            width: 600px;
+        }
+        th,td{
+            text-align: center;
+        }
+        table{
+            border: 2px solid orangered;
+        }
+        thead{
+            background-color: orangered;
+        }
+        .active{
+            background-color: orangered;
+        }
+    </style>
 </head>
 <body>
+<div v-cloak id="app" class="container">
+    <p v-once>原始值：{{msg}}</p>
+    <p>后面值：{{msg}}</p>
+    <label>
+        <input type="text" v-model="msg">
+    </label>
+    <hr>
+    <select name="" id="" v-model="select" multiple>
+        <option>html</option>
+        <option value="javascript">javascript</option>
+        <option value="css">css</option>
+    </select>
+    <p>{{select}}</p>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="per in person">
+            <td>{{per.name}}</td>
+            <td>{{per.age}}</td>
+            <td>{{per.sex}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <img v-bind:src="bind1" :alt="alt" :title="alt">
+    <img v-bind:src="bind2" :alt="alt" :title="alt">
+    <hr>
+    <!--v指令里面都可以加表达式，必须有个结果-->
+    <div v-for="(college,index) in colleges" :class="index == bindClass ? 'active':''">
+        {{college}}
+    </div>
+    <h3 :style="{color:bindStyle}">{{msg}}</h3>
+    <hr>
+    <p :style="{color:bindStyle}">{{msg}}</p>
+    <button v-on:click="msg = '今天好热啊！！！'" class="btn btn-info btn-xs">改变内容</button>
+    <button @click="changeContent()" class="btn btn-info btn-xs">改变内容1</button>
+    <button @click="changeContentColor()" class="btn btn-info btn-xs">改变颜色</button>
+    <hr>
+</div>
 
-
+<script src="../../js/vue.js"></script>
 <script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '今天天气很好！！！',
+            select: ["js"],
+            person: [
+                {name: '张三', age: 20, sex: '男'},
+                {name: '李四', age: 18, sex: '男'},
+                {name: '王二', age: 20, sex: '男'}
+            ],
+            bind1:'../../img/img_01.jpg',
+            bind2:'../../img/img_02.jpg',
+            alt:'我是美女',
 
+            colleges:[
+                'iOS学院',
+                'Java学院',
+                'HTML5学院',
+                'UI学院',
+                'C++学院',
+            ],
+            bindClass: 3,
+            bindStyle: 'green',
+
+
+        },
+        methods:{
+            changeContent:function () {
+                vm.msg = "测试改掉没有！！！"
+            },
+            changeContentColor:function () {
+                vm.bindStyle = "red"
+            }
+        }
+    })
 </script>
 </body>
 </html>

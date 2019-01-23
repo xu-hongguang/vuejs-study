@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js指令综合练习</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+
+        #app {
+            width: 600px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div v-cloak id="app" class="container">
+<p>{{reverse}}</p>
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            text: 'Rose,Jack'
+        },
+        //计算属性
+        computed: {
+            reverse: function () {
+                return this.text.split(',').reverse().join(',')
+            }
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

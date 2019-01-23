@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js组件</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+
+        #app {
+            width: 600px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div v-cloak id="app" class="container">
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+
+    <p>按钮被点击的总数{{totalCounter}}</p>
+</div>
+
+<template id="my_btn">
+    <button @click="total()">按钮被点击{{counter}}次</button>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+    Vue.component("my-btn", {
+        template: "#my_btn",
+        data:function () {
+            return {
+                counter: 0
+            }
+        },
+        methods:{
+            total:function () {
+                this.counter ++;
+
+                // 通知外界我调用了此方法
+                this.$emit("total")
+            }
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            totalCounter: 0
+        },
+        methods:{
+            allCounter:function () {
+                this.totalCounter ++;
+            }
+        }
+    });
+</script>
+</body>
+</html>

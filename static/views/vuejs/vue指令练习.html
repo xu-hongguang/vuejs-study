@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js指令综合练习</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+
+        #app{
+            width: 600px;
+            margin: 50px auto;
+        }
+
+        select{
+            width: 50px;
+        }
+
+        table {
+            width: 600px;
+            margin: 10px auto;
+            border: 2px solid orange;
+        }
+
+        th, td {
+            text-align: center;
+            border: 1px solid orange;
+        }
+
+        thead {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div v-cloak id="app" class="container">
+    <!--第一部分-->
+    <fieldset>
+        <legend>学生录入系统</legend>
+        <div>
+            <span>姓名:</span>
+            <label>
+                <input type="text" placeholder="请输入姓名" v-model="newStudent.name">
+            </label>
+        </div>
+        <div>
+            <span>年龄:</span>
+            <label>
+                <input type="text" placeholder="请输入年龄" v-model="newStudent.age">
+            </label>
+        </div>
+        <div>
+            <span>性别:</span>
+            <label>
+                <select v-model="newStudent.sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <span>手机:</span>
+            <label>
+                <input type="text" placeholder="请输入手机号码" v-model="newStudent.phone">
+            </label>
+        </div>
+        <button @click="createNewStudent()">创建新用户</button>
+    </fieldset>
+
+    <table>
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>手机</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(per,index) in persons">
+            <td>{{per.name}}</td>
+            <td>{{per.age}}</td>
+            <td>{{per.sex}}</td>
+            <td>{{per.phone}}</td>
+            <td>
+                <input type="button" class="btn btn-danger btn-xs" @click="deleteStu(index)" value="删除">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            persons: [
+                {name: '张三', age: 20, sex: '男', phone: '18932323232'},
+                {name: '李四', age: 30, sex: '男', phone: '18921212122'},
+                {name: '王五', age: 20, sex: '男', phone: '18932223232'},
+                {name: '赵六', age: 25, sex: '女', phone: '18932322232'},
+            ],
+            newStudent: {name: '', age: null, sex: '男', phone: ''}
+        },
+        methods: {
+            createNewStudent:function () {
+                // 姓名不能为空
+                if(this.newStudent.name === ''){
+                    alert('姓名不能为空');
+                    return;
+                }
+
+                // 年龄不能小于0
+                if(this.newStudent.age <= 0){
+                    alert('请输入正确的年龄');
+                    return;
+                }
+
+                // 手机号码
+                if(this.newStudent.phone === ''){
+                    alert('手机号码不正确');
+                    return;
+                }
+
+                // 往数组中添加一条新纪录
+                // this.persons.push(this.newStudent); //从下面添加
+                this.persons.unshift(this.newStudent); //从上面添加
+                // 清空数据
+                this.newStudent = {name: '', age: null, sex: '男', phone: ''}
+            },
+            deleteStu:function (index) {
+                this.persons.splice(index,1);  //第二个参数是要删除指定下标往后的个数
+            }
+        }
+    })
+</script>
+</body>
+</html>
