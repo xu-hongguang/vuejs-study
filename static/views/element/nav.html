@@ -55,6 +55,9 @@
             <span slot="title">导航四</span>
         </el-menu-item>
     </el-menu>
+    <div v-for="(n,index1) in test">
+        {{index1 + 1}} : {{n}}
+    </div>
 </div>
 
 
@@ -62,7 +65,8 @@
     new Vue({
         el: "#app",
         data: {
-            isCollapse: true
+            isCollapse: true,
+            test: [1,2,3]
         },
         methods: {
             handleOpen(key, keyPath) {
