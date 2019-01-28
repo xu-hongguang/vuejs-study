@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>横向导航</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="../../js/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="../../js/vue-router.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <el-menu :default-active="$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <label v-for="(item,index) in navData" :key="index">
+            <el-menu-item :index=item.url>
+                <i :class=item.icon></i>
+                <span slot="title">{{item.name}}</span>
+            </el-menu-item>
+        </label>
+    </el-menu>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            navData: [
+                {
+                    name: "ECharts",
+                    url: "/Echarts",
+                    icon: "el-icon-menu"
+                },
+                {
+                    name: "菜单选项2",
+                    url: "2",
+                    icon: "el-icon-tickets"
+                },
+                {
+                    name: "菜单选项3",
+                    url: "3",
+                    icon: "el-icon-message"
+                },
+                {
+                    name: "菜单选项4",
+                    url: "4",
+                    icon: "el-icon-phone-outline"
+                },
+                {
+                    name: "菜单选项5",
+                    url: "5",
+                    icon: "el-icon-star-off"
+                },
+                {
+                    name: "菜单选项6",
+                    url: "6",
+                    icon: "el-icon-setting"
+                }
+            ]
+        }
+    })
+</script>
+
+</html>
